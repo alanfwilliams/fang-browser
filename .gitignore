@@ -172,3 +172,18 @@ cython_debug/
 
 # vscode files
 .vscode/
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+*.cmake
+
+# VCXProject
+*.vcxproj
+*.vcxproj.*
+
+# Sln files
+*.sln
+
+# Makefile project
+Makefile
