@@ -187,3 +187,6 @@ CMakeCache.txt
 
 # Makefile project
 Makefile
+
+# python modules
+python_modules/
