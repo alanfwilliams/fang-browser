@@ -6,7 +6,6 @@
 #endif
 
 #include <Python.h>
-#include <structmember.h>
 
 #ifdef _WIN32
 #define EXPORT __declspec(dllexport)
@@ -16,8 +15,6 @@
 
 EXPORT PyObject * net_request(PyObject *self, PyObject *args)
 {
-    PyGILState_STATE gstate = PyGILState_Ensure();  // Ensure the thread has a valid state
-
     const char *host;
     int port;
     const char *command;
@@ -26,7 +23,6 @@ EXPORT PyObject * net_request(PyObject *self, PyObject *args)
     const char *error_msg = NULL;
 
     if (!PyArg_ParseTuple(args, "sis", &host, &port, &command)) {
-        PyGILState_Release(gstate);
         return NULL;
     }
     
@@ -134,7 +130,6 @@ cleanup:
     if (error_flag) {
         PyErr_SetString(PyExc_RuntimeError, error_msg);
     }
-    PyGILState_Release(gstate);
     return PyLong_FromLong(sts);
 }
 
